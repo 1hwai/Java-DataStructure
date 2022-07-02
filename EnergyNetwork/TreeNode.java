@@ -9,9 +9,13 @@ public class TreeNode {
         this.blockEntity = blockEntity;
     }
 
-    public void addBelow(BlockEntity be) {
+    public boolean addBelow(BlockEntity be) {
+        TreeNode tree = be.tree; 
+        if (children.contains(tree))
+            return false;
         be.tree.parent = this;
         children.add(be.tree);
+        return true;
     }
 
     public void remove() {
@@ -36,6 +40,5 @@ public class TreeNode {
             node.show(depth + 1);
         }
     }
-
 
 }
