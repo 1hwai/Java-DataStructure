@@ -11,15 +11,29 @@ public class Main {
         ConsumerBE ce4 = new ConsumerBE();
         ConsumerBE ce5 = new ConsumerBE();
 
-        se0.tree.addBelow(ce0);
-        se0.tree.addBelow(se1);
-        se0.tree.addBelow(se2);
+        se0.tree.addChild(ce0);
+        se0.tree.addChild(se1);
+        se0.tree.addChild(se2);
 
-        se1.tree.addBelow(ce1);
-        se1.tree.addBelow(ce2);
-        se2.tree.addBelow(ce3);
-        se2.tree.addBelow(ce4);
-        se2.tree.addBelow(ce5);
+        se1.tree.addChild(ce1);
+        se1.tree.addChild(ce2);
+        se2.tree.addChild(ce3);
+        se2.tree.addChild(ce4);
+        se2.tree.addChild(ce5);
+
+        SourceBE se3 = new SourceBE();
+        SourceBE se4 = new SourceBE();
+        SourceBE se5 = new SourceBE();
+        // se3.tree.setParent(se4);
+        // se2.tree.setParent(se4);
+
+        se5.tree.setParent(se4);
+        se4.tree.setParent(se3);
+        se2.tree.setParent(se3);
+
+        System.out.println("se2: " + se2 + " | se3: " + se3 + " | se4: " + se4 + " | se5: " + se5);
+
         se0.tree.show();
+
     }
 }
