@@ -1,9 +1,9 @@
 public class BlockEntity {
-    public String name;
+    public String type;
     public TreeNode tree;
 
-    public BlockEntity(String name) {
-        this.name = name;
+    public BlockEntity(String type) {
+        this.type = type;
         tree = new TreeNode(this);
     }
 }
