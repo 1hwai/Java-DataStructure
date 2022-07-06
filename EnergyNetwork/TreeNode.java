@@ -9,7 +9,19 @@ public class TreeNode {
         this.blockEntity = blockEntity;
     }
 
-    public boolean addBelow(BlockEntity be) {
+    public boolean setParent(BlockEntity be) {
+        if (be.tree == this) 
+            return false;
+        if (parent != null) {
+            parent.children.remove(this);
+            parent.children.add(be.tree);
+        }
+        be.tree.children.add(this);
+        parent = be.tree;
+        return true;
+    }
+
+    public boolean addChild(BlockEntity be) {
         TreeNode tree = be.tree; 
         if (children.contains(tree))
             return false;
@@ -35,7 +47,7 @@ public class TreeNode {
 
     private void show(int depth) {
         for (TreeNode node : children) {
-            for (int i = 0; i < depth; i++) System.out.print("  ");
+            for (int i = 1; i < depth; i++) System.out.print("  ");
             System.out.println(" └ " + node.blockEntity);
             node.show(depth + 1);
         }
