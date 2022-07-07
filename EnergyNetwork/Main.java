@@ -34,6 +34,14 @@ public class Main {
         System.out.println("se2: " + se2 + " | se3: " + se3 + " | se4: " + se4 + " | se5: " + se5);
 
         se0.tree.show();
+        se3.tree.rmChildren();
+        se0.tree.show();
+
+        se2.tree.show();
+
+        // se1.tree.rmParent();
+        // se0.tree.show();
+        
 
     }
 }
