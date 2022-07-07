@@ -23,7 +23,7 @@ public class TreeNode {
 
     public boolean addChild(BlockEntity be) {
         TreeNode tree = be.tree; 
-        if (children.contains(tree))
+        if (be.tree.parent == this || children.contains(tree))
             return false;
         be.tree.parent = this;
         children.add(be.tree);
@@ -31,11 +31,24 @@ public class TreeNode {
     }
 
     public void remove() {
-        if (parent != null)
-            parent.children.remove(this);
-        for (TreeNode node : children) {
-            node.parent = null;
-        }
+        rmParent();
+        rmChildren();
+    }
+
+    public void rmParent() {
+        if (parent == null) return;
+        parent.children.remove(this);
+        parent = null;
+    }
+
+    public void rmChild(BlockEntity be) {
+        if (be.tree.parent != this) return;
+        be.tree.parent = null;
+        children.remove(be.tree);
+    }
+
+    public void rmChildren() {
+        children.forEach((node) -> node.parent = null);
         children.clear();
     }
 
